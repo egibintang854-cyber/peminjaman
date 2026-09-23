@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Peminjaman Alat — Demo</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .ringkasan { display:flex; gap:16px; flex-wrap:wrap; margin:24px 0; }
+    .ringkasan article { flex:1; min-width:150px; background:#edf3fa; padding:20px; border-radius:10px; }
+    .ringkasan strong { display:block; font-size:2rem; color:#173a63; }
+    label { display:block; margin-bottom:16px; }
+    label input, label select { display:block; }
+    td button { padding:6px 10px; }
+    .catatan { padding:14px; background:#fff6dc; border-radius:8px; }
+    [hidden] { display:none !important; }
+  </style>
+  <script src="./app.js" defer></script>
+</head>
+<body class="halaman-aplikasi">
+  <aside class="sidebar">
+    <a class="merek" href="#dashboard">Peminjaman Alat</a>
+    <nav aria-label="Navigasi utama">
+      <div class="kelompok-menu">
+        <p class="keterangan-menu">Demo aplikasi</p>
+        <a href="#dashboard">Beranda</a>
+        <a href="#alat">Daftar Alat</a>
+        <a href="#peminjaman">Peminjaman</a>
+        <a href="#laporan">Laporan</a>
+      </div>
+    </nav>
+    <div class="profil"><strong>Pengunjung Demo</strong><span>Data contoh, tanpa akun</span></div>
+  </aside>
+  <main class="konten">
+    <p class="catatan tanpa-cetak">Demo GitHub Pages. Tidak ada login atau database bersama. Perubahan disimpan hanya di browser ini; gunakan nama contoh.</p>
+    <noscript>Aktifkan JavaScript untuk mencoba demo ini.</noscript>
+    <p id="pesan" role="status" hidden></p>
+    <section id="dashboard">
+      <h1>Dashboard</h1><p>Selamat datang di demo peminjaman alat. Coba pinjam alat, kembalikan, lalu lihat laporannya.</p>
+      <div class="ringkasan">
+        <article>Jenis alat<strong id="jumlah-alat">0</strong></article>
+        <article>Stok tersedia<strong id="stok">0</strong></article>
+        <article>Pinjaman aktif<strong id="aktif">0</strong></article>
+      </div>
+      <a href="#peminjaman">Buat peminjaman contoh →</a>
+    </section>
+    <section id="alat" hidden><h1>Daftar Alat</h1>
+      <div class="tabel-scroll"><table><thead><tr><th>Alat</th><th>Kategori</th><th>Stok tersedia</th></tr></thead><tbody id="data-alat"></tbody></table></div>
+    </section>
+    <section id="peminjaman" hidden><h1>Peminjaman</h1>
+      <form id="form-pinjam" class="tanpa-cetak">
+        <label>Nama contoh<input name="nama" maxlength="80" placeholder="Contoh: Budi" required></label>
+        <label>Alat<select name="alat" id="pilih-alat" required></select></label>
+        <label>Jumlah<input name="jumlah" type="number" min="1" max="100" value="1" required></label>
+        <button type="submit">Pinjam alat</button>
+      </form>
+      <p>Dalam demo, peminjaman langsung disetujui. Klik Kembalikan setelah selesai.</p>
+      <div class="tabel-scroll"><table><thead><tr><th>Nama</th><th>Alat</th><th>Jumlah</th><th>Status</th><th>Aksi</th></tr></thead><tbody id="data-pinjam"></tbody></table></div>
+    </section>
+    <section id="laporan" hidden><h1>Laporan Peminjaman</h1>
+      <button type="button" id="cetak" class="tanpa-cetak">Cetak / Simpan PDF</button>
+      <div class="tabel-scroll"><table><thead><tr><th>Nama</th><th>Alat</th><th>Jumlah</th><th>Tanggal pinjam</th><th>Tanggal kembali</th><th>Status</th></tr></thead><tbody id="data-laporan"></tbody></table></div>
+      <button type="button" id="reset" class="tanpa-cetak">Reset data demo</button>
+    </section>
+  </main>
+</body>
+</html>
